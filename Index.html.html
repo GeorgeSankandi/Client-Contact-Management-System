@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Contact Management System</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Client Contact Management System</h1>
+        
+        <div class="navigation">
+            <button class="nav-button active" onclick="showPage('clients')">Clients</button>
+            <button class="nav-button" onclick="showPage('contacts')">Contacts</button>
+        </div>
+        
+        <div id="clients-page" class="page-section active-page">
+            <h2>Client Management</h2>
+            
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="clientName">Client Name:</label>
+                    <input type="text" id="clientName" placeholder="Enter client name">
+                </div>
+                
+                <button onclick="addClient()">Add Client</button>
+                <div id="clientFeedback" class="feedback-message"></div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Linked Contacts</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="clientsList"></tbody>
+            </table>
+        </div>
+        
+        <div id="contacts-page" class="page-section">
+            <h2>Contact Management</h2>
+            
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="contactName">First Name:</label>
+                    <input type="text" id="contactName" placeholder="Enter first name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactSurname">Last Name:</label>
+                    <input type="text" id="contactSurname" placeholder="Enter last name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactEmail">Email:</label>
+                    <input type="email" id="contactEmail" placeholder="Enter email address">
+                </div>
+                
+                <button onclick="addContact()">Add Contact</button>
+                <div id="contactFeedback" class="feedback-message"></div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Linked Clients</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="contactsList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="CCM.js"></script>
+
+    <script>
+        
+    </script>
+</body>
+</html>
