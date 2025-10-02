@@ -260,15 +260,34 @@ let clients = [];
         }
 
         function toggleLink(parentId, childId, type) {
-            if (type === 'client') {
-                const client = clients.find(c => c.id === parentId);
-                const index = client.linkedContacts.indexOf(childId);
-                index === -1 ? client.linkedContacts.push(childId) : client.linkedContacts.splice(index, 1);
-            } else {
-                const contact = contacts.find(c => c.id === parentId);
-                const index = contact.linkedClients.indexOf(childId);
-                index === -1 ? contact.linkedClients.push(childId) : contact.linkedClients.splice(index, 1);
+            const clientId = type === 'client' ? parentId : childId;
+            const contactId = type === 'client' ? childId : parentId;
+
+            const client = clients.find(c => c.id === clientId);
+            const contact = contacts.find(c => c.id === contactId);
+
+            if (!client || !contact) {
+                console.error("Client or Contact not found.");
+                return;
             }
+
+            const contactIndexInClient = client.linkedContacts.indexOf(contactId);
+            const clientIndexInContact = contact.linkedClients.indexOf(clientId);
+
+            if (contactIndexInClient !== -1) {
+                // Link exists, so remove it from both.
+                client.linkedContacts.splice(contactIndexInClient, 1);
+                if (clientIndexInContact !== -1) {
+                    contact.linkedClients.splice(clientIndexInContact, 1);
+                }
+            } else {
+                // Link doesn't exist, so add it to both.
+                client.linkedContacts.push(contactId);
+                if (clientIndexInContact === -1) {
+                    contact.linkedClients.push(clientId);
+                }
+            }
+
             renderClients();
             renderContacts();
         }
